@@ -10,19 +10,21 @@ export default async function loginService(token, db, res) {
     let user;
     try {
         user = jwt.verify(token, process.env.JWT_KEY);
+        console.log(user)
     } catch (err) {
         throw new AppError("Access Denied", 401);
     }
-    let tokenUser = removeToken({ jti: user.jti }, "refreshTokens", db);
+    if (user.type !== "refresh") throw new AppError("Access Denied", 401);
+    let tokenUser = await removeToken({ jti: user.jti }, "refreshTokens", db);
     if (!tokenUser) throw new AppError("Access Denied", 401);
     let accessToken = await generateToken(
-        { sub: user._id, role: user.role },
+        { sub: user.sub, role: user.role },
         "access",
         "15m",
     );
 
     let refreshToken = await generateToken(
-        { sub: user._id, role: user.role },
+        { sub: user.sub, role: user.role },
         "refresh",
         "1d",
         db,

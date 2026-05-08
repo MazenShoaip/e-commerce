@@ -14,7 +14,7 @@ export default async function generateToken(
     let jti = crypto.randomUUID();
     user.jti = jti;
     let token = jwt.sign(
-        { jti, type, createdAt: new Date(), ...user },
+        { sub: user.sub, jti, type, createdAt: new Date(), ...user },
         process.env.JWT_KEY,
         {
             expiresIn: expire,
