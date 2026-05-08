@@ -9,6 +9,12 @@ export default async function connectDB() {
     await db
         .collection("pendingUsers")
         .createIndex({ createdAt: 1 }, { expireAfterSeconds: 300 });
+    await db
+        .collection("refreshTokens")
+        .createIndex(
+            { createdAt: 1 },
+            { expireAfterSeconds: 7 * 24 * 60 * 60 },
+        );
     console.log("MongoDB connected");
     return db;
 }

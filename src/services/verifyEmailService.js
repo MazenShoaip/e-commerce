@@ -13,7 +13,8 @@ export default async function verifyEmailService(body, db) {
         db,
     );
     if (!user) throw new AppError("ID was not found", 404);
-    if (user.date + 300000 < Date.now()) throw new AppError("Expired OTP", 401);
+    if (300000 < new Date() - user.createdAt)
+        throw new AppError("Expired OTP", 401);
     let match = await bcrypt.compare(data.otp, user.otp);
     if (!match) throw new AppError("Invalid OTP", 401);
     let findEmail = await findUser({ email: user.email }, "users", db);
@@ -22,6 +23,6 @@ export default async function verifyEmailService(body, db) {
     if (finduser) throw new AppError("User Name is already used", 409);
     let signupData = { ...user };
     delete signupData.otp;
-    let result = await addUser(signupData, "users", db);
-    return result;
+    await addUser(signupData, "users", db);
+    return { success: true, message: "Email verified" };
 }

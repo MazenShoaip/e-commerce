@@ -18,8 +18,8 @@ export default async function refreshVerifyEmailService(body, db) {
     let otp = generateOTP();
     let hashedOTP = await bcrypt.hash(String(otp), 10);
     user.otp = hashedOTP;
-    user.date = Date.now();
-    let result = await updateUser(user, "pendingUsers", db);
+    user.createdAt = Date.now();
+     await updateUser(user, "pendingUsers", db);
     await sendEmail({
         to: user.email,
         subject: "otp code",

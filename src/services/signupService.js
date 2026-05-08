@@ -21,8 +21,8 @@ export default async function signupService(body, db) {
     let password = await bcrypt.hash(data.password, 10);
     let otpCode = generateOTP();
     let otp = await bcrypt.hash(String(otpCode), 10);
-    let signupData = { ...data, password, otp };
-    signupData.date = Date.now();
+    let signupData = { ...data, password, otp, role: "user" };
+    signupData.createdAt = new Date();
     let result = await addUser(signupData, "pendingUsers", db);
     await sendEmail({
         to: signupData.email,
