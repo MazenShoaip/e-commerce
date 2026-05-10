@@ -11,7 +11,7 @@ import generateOTP from "../utils/generateOTP.js";
 
 export default async function signupService(body, db) {
     let verify = userSignupSchema.safeParse(body);
-    if (!verify.success) throw new AppError(verify.error.message, 400);
+    if (!verify.success) throw new AppError("Invalid " + verify.error.issues[0].path[0], 400);
     let data = verify.data;
     if (await findUser({ userName: data.userName }, "users", db))
         throw new AppError("Username is already used", 409);

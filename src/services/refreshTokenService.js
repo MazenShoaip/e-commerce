@@ -6,11 +6,10 @@ import storeRefreshToken from "../utils/storeRefreshToken.js";
 import jwt from "jsonwebtoken";
 configDotenv();
 
-export default async function loginService(token, db, res) {
+export default async function refreshTokenService(token, db, res) {
     let user;
     try {
-        user = jwt.verify(token, process.env.JWT_KEY);
-        console.log(user)
+        user = jwt.verify(token, process.env.REFRESH_JWT_KEY);
     } catch (err) {
         throw new AppError("Access Denied", 401);
     }

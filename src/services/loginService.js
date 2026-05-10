@@ -6,7 +6,7 @@ import generateToken from "../utils/generateToken.js";
 import storeRefreshToken from "../utils/storeRefreshToken.js";
 export default async function loginService(body, db, res) {
     let verify = userLoginSchema.safeParse(body);
-    if (!verify.success) throw new AppError(verify.error.message, 400);
+    if (!verify.success) throw new AppError("Invalid " + verify.error.issues[0].path[0], 400);
 
     let data = verify.data;
     let user = await findUser({ email: data.email }, "users", db);
@@ -26,5 +26,5 @@ export default async function loginService(body, db, res) {
         db,
     );
     storeRefreshToken(refreshToken, res);
-    return { success: true, accessToken };
+    return { accessToken };
 }

@@ -1,6 +1,6 @@
 export default class AppError extends Error {
     constructor(message, status) {
-        super(JSON.stringify(message));
+        super(message);
         this.status = status;
         this.isOperational = true;
     }

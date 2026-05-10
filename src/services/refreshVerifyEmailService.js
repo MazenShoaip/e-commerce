@@ -7,7 +7,7 @@ import generateOTP from "../utils/generateOTP.js";
 import sendEmail from "./emailService.js";
 export default async function refreshVerifyEmailService(body, db) {
     let verify = refreshVerifyEmailSchema.safeParse(body);
-    if (!verify.success) throw new AppError(verify.error.message, 400);
+    if (!verify.success) throw new AppError("Invalid " + verify.error.issues[0].path[0], 400);
     let data = verify.data;
     let user = await findUser(
         { _id: new ObjectId(data.id) },
@@ -18,7 +18,7 @@ export default async function refreshVerifyEmailService(body, db) {
     let otp = generateOTP();
     let hashedOTP = await bcrypt.hash(String(otp), 10);
     user.otp = hashedOTP;
-    user.createdAt = Date.now();
+    user.createdAt = new Date();
      await updateUser(user, "pendingUsers", db);
     await sendEmail({
         to: user.email,

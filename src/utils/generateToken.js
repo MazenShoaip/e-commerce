@@ -15,7 +15,7 @@ export default async function generateToken(
     user.jti = jti;
     let token = jwt.sign(
         { sub: user.sub, jti, type, createdAt: new Date(), ...user },
-        process.env.JWT_KEY,
+        process.env[type.toUpperCase()+'_JWT_KEY'],
         {
             expiresIn: expire,
         },
@@ -24,4 +24,4 @@ export default async function generateToken(
     return token;
 }
 
-// generateToken({ user: "demo" },'refresh', "7d");
+// console.log(await generateToken({ user: "demo" },'access', "7d"));

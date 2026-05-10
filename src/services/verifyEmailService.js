@@ -5,7 +5,7 @@ import AppError from "../utils/appError.js";
 import bcrypt from "bcrypt";
 export default async function verifyEmailService(body, db) {
     let verify = verifyEmailSchema.safeParse(body);
-    if (!verify.success) throw new AppError(verify.error.message, 400);
+    if (!verify.success) throw new AppError("Invalid " + verify.error.issues[0].path[0], 400);
     let data = verify.data;
     let user = await findUser(
         { _id: new ObjectId(data.id) },
