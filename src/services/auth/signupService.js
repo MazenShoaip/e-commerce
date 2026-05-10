@@ -2,12 +2,12 @@ import {
     addUser,
     findUser,
     findUsers,
-} from "../Repositories/userRepository.js";
-import userSignupSchema from "../schemas/userSignupSchema.js";
-import AppError from "../utils/appError.js";
+} from "../../Repositories/userRepository.js";
+import userSignupSchema from "../../schemas/userSignupSchema.js";
+import AppError from "../../utils/appError.js";
 import bcrypt from "bcrypt";
-import sendEmail from "./emailService.js";
-import generateOTP from "../utils/generateOTP.js";
+import sendEmail from "../emailService.js";
+import generateOTP from "../../utils/generateOTP.js";
 
 export default async function signupService(body, db) {
     let verify = userSignupSchema.safeParse(body);
@@ -21,7 +21,7 @@ export default async function signupService(body, db) {
     let password = await bcrypt.hash(data.password, 10);
     let otpCode = generateOTP();
     let otp = await bcrypt.hash(String(otpCode), 10);
-    let signupData = { ...data, password, otp, role: "user" };
+    let signupData = { ...data, password, otp, role: "admin" };
     signupData.createdAt = new Date();
     let result = await addUser(signupData, "pendingUsers", db);
     await sendEmail({

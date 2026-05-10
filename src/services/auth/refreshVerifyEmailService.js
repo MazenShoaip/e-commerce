@@ -1,10 +1,10 @@
 import { ObjectId } from "mongodb";
-import { updateUser, findUser } from "../Repositories/userRepository.js";
-import refreshVerifyEmailSchema from "../schemas/refreshVerifyEmailSchema.js";
-import AppError from "../utils/appError.js";
+import { updateUser, findUser } from "../../Repositories/userRepository.js";
+import refreshVerifyEmailSchema from "../../schemas/refreshVerifyEmailSchema.js";
+import AppError from "../../utils/appError.js";
 import bcrypt from "bcrypt";
-import generateOTP from "../utils/generateOTP.js";
-import sendEmail from "./emailService.js";
+import generateOTP from "../../utils/generateOTP.js";
+import sendEmail from "../emailService.js";
 export default async function refreshVerifyEmailService(body, db) {
     let verify = refreshVerifyEmailSchema.safeParse(body);
     if (!verify.success) throw new AppError("Invalid " + verify.error.issues[0].path[0], 400);

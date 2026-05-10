@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
-import { addUser, findUser } from "../Repositories/userRepository.js";
-import verifyEmailSchema from "../schemas/verifyEmailSchema.js";
-import AppError from "../utils/appError.js";
+import { addUser, findUser } from "../../Repositories/userRepository.js";
+import verifyEmailSchema from "../../schemas/verifyEmailSchema.js";
+import AppError from "../../utils/appError.js";
 import bcrypt from "bcrypt";
 export default async function verifyEmailService(body, db) {
     let verify = verifyEmailSchema.safeParse(body);

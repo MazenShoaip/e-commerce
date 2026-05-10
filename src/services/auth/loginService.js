@@ -1,9 +1,9 @@
-import { findUser } from "../Repositories/userRepository.js";
-import userLoginSchema from "../schemas/userLoginSchema.js";
-import AppError from "../utils/appError.js";
+import { findUser } from "../../Repositories/userRepository.js";
+import userLoginSchema from "../../schemas/userLoginSchema.js";
+import AppError from "../../utils/appError.js";
 import bcrypt from "bcrypt";
-import generateToken from "../utils/generateToken.js";
-import storeRefreshToken from "../utils/storeRefreshToken.js";
+import generateToken from "../../utils/generateToken.js";
+import storeRefreshToken from "../../utils/storeRefreshToken.js";
 export default async function loginService(body, db, res) {
     let verify = userLoginSchema.safeParse(body);
     if (!verify.success) throw new AppError("Invalid " + verify.error.issues[0].path[0], 400);

@@ -1,8 +1,8 @@
 import { configDotenv } from "dotenv";
-import { removeToken } from "../Repositories/tokenRepository.js";
-import AppError from "../utils/appError.js";
-import generateToken from "../utils/generateToken.js";
-import storeRefreshToken from "../utils/storeRefreshToken.js";
+import { removeToken } from "../../Repositories/tokenRepository.js";
+import AppError from "../../utils/appError.js";
+import generateToken from "../../utils/generateToken.js";
+import storeRefreshToken from "../../utils/storeRefreshToken.js";
 import jwt from "jsonwebtoken";
 configDotenv();
 

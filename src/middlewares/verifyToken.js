@@ -8,7 +8,7 @@ export default function verifyToken(req, res, next) {
     try {
         user = jwt.verify(token, process.env.ACCESS_JWT_KEY);
     } catch (err) {
-        throw AppError("Access Denied", 401);
+        throw new AppError("Access Denied", 401);
     }
     if (user.type !== "access") throw AppError("Access Denied", 401);
     req.user = user;
