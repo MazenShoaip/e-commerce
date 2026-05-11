@@ -9,7 +9,6 @@ export default async function addProductService(body) {
     let data = verify.data;
     let result = await addItem(data, "products");
     return {
-        success: true,
         id: result.insertedId,
         message: "Product is added",
     };

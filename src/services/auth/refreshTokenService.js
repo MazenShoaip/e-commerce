@@ -1,5 +1,5 @@
 import { configDotenv } from "dotenv";
-import { removeItem } from "../../Repositories/databaseRepository.js";
+import { deleteItem } from "../../Repositories/databaseRepository.js";
 import AppError from "../../utils/appError.js";
 import generateToken from "../../utils/generateToken.js";
 import storeRefreshToken from "../../utils/storeRefreshToken.js";
@@ -14,7 +14,7 @@ export default async function refreshTokenService(token, res) {
         throw new AppError("Access Denied", 401);
     }
     if (user.type !== "refresh") throw new AppError("Access Denied", 401);
-    let tokenUser = await removeItem({ jti: user.jti }, "refreshTokens");
+    let tokenUser = await deleteItem({ jti: user.jti }, "refreshTokens");
     if (!tokenUser) throw new AppError("Access Denied", 401);
     let accessToken = await generateToken(
         { sub: user.sub, role: user.role },

@@ -17,13 +17,13 @@ export default async function loginService(body, res) {
     let accessToken = await generateToken(
         { sub: user._id, role: user.role },
         "access",
-        "15m",
+        "1d",
     );
 
     let refreshToken = await generateToken(
         { sub: user._id, role: user.role },
         "refresh",
-        "15m",
+        "1d",
     );
     storeRefreshToken(refreshToken, res);
     return { accessToken };
