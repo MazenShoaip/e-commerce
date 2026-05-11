@@ -15,9 +15,11 @@ export async function findItem(data, col) {
     return await items.findOne(data);
 }
 export async function updateItem(data, col) {
-    if (data._id) data._id = new ObjectId(data._id);
+    let { _id } = data;
+    if (_id) _id = new ObjectId(_id);
+    delete data._id;
     let items = dbCollection(col);
-    return await items.updateOne({ _id: data._id }, { $set: data });
+    return await items.updateOne({ _id: _id }, { $set: data });
 }
 
 export async function findItems(data, col) {
