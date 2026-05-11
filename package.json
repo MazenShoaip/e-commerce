@@ -36,6 +36,7 @@
         "#routes/*": "./src/routes/*",
         "#schemas/*": "./src/schemas/*",
         "#services/*": "./src/services/*",
-        "#utils/*": "./src/utils/*"
+        "#utils/*": "./src/utils/*",
+        "#src/*": "./src/*"
     }
 }

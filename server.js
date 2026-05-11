@@ -4,7 +4,7 @@
 // });
 
 import connectDB from "#db/db.js";
-import app from "./src/app.js";
+import app from "#src/app.js";
 import AppError from "#utils/appError.js";
 async function startServer() {
     try {
