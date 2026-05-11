@@ -5,30 +5,26 @@ import refreshVerifyEmailService from "../services/auth/refreshVerifyEmailServic
 import verifyEmailService from "../services/auth/verifyEmailService.js";
 
 export async function loginController(req, res, next) {
-    let result = await loginService(req.body, req.app.locals.db, res);
+    let result = await loginService(req.body, res);
     res.status(200).json({ success: true, ...result });
 }
 
 export async function signupController(req, res, next) {
-    let result = await signupService(req.body, req.app.locals.db);
+    let result = await signupService(req.body);
     res.status(201).json({ success: true, ...result });
 }
 
 export async function verifyEmailController(req, res, next) {
-    let result = await verifyEmailService(req.body, req.app.locals.db);
+    let result = await verifyEmailService(req.body);
     res.status(201).json({ success: true, ...result });
 }
 
 export async function refreshVerifyEmailController(req, res, next) {
-    let result = await refreshVerifyEmailService(req.body, req.app.locals.db);
+    let result = await refreshVerifyEmailService(req.body);
     res.status(201).json({ success: true, ...result });
 }
 
 export async function refreshTokenController(req, res, next) {
-    let result = await refreshTokenService(
-        req.cookies.refreshToken,
-        req.app.locals.db,
-        res,
-    );
+    let result = await refreshTokenService(req.cookies.refreshToken, res);
     res.status(200).json({ success: true, ...result });
 }

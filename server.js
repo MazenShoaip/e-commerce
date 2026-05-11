@@ -3,13 +3,13 @@
 //     process.exit(1);
 // });
 
-import app from "./src/app.js";
 import connectDB from "./src/db/db.js";
+import app from "./src/app.js";
 import AppError from "./src/utils/appError.js";
 async function startServer() {
     try {
         let db = await connectDB();
-        app.locals.db = db;
+        // app.locals.db = db;
         app.listen(5000);
         console.log("Server is Ready");
     } catch (err) {

@@ -3,6 +3,6 @@ export default function storeRefreshToken(token, res) {
         httpOnly: true,
         secure: false,
         sameSite: "strict",
-        path: "/token/refresh",
+        path: "/auth/token/refresh",
     });
 }
