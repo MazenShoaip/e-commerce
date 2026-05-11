@@ -3,9 +3,9 @@
 //     process.exit(1);
 // });
 
-import connectDB from "./src/db/db.js";
+import connectDB from "#db/db.js";
 import app from "./src/app.js";
-import AppError from "./src/utils/appError.js";
+import AppError from "#utils/appError.js";
 async function startServer() {
     try {
         let db = await connectDB();

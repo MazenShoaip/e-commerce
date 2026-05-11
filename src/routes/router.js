@@ -1,6 +1,6 @@
 import express from 'express'
-import authRoute from './authRouter.js'
-import productRoute from "./productRoute.js";
+import authRoute from '#routes/authRouter.js'
+import productRoute from "#routes/productRoute.js";
 
 let router = express.Router()
 

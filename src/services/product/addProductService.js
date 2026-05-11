@@ -1,6 +1,6 @@
-import { addItem } from "../../Repositories/databaseRepository.js";
-import AppError from "../../utils/appError.js";
-import productSchema from "../../schemas/productSchema.js";
+import { addItem } from "#repositories/databaseRepository.js";
+import AppError from "#utils/appError.js";
+import productSchema from "#schemas/productSchema.js";
 
 export default async function addProductService(body) {
     let verify = productSchema.safeParse(body);

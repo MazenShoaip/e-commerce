@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import { configDotenv } from "dotenv";
-import { addItem } from "../Repositories/databaseRepository.js";
+import { addItem } from "#repositories/databaseRepository.js";
 
 configDotenv();
 

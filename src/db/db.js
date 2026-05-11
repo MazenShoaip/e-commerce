@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 import { configDotenv } from "dotenv";
-import AppError from "../utils/appError.js";
+import AppError from "#utils/appError.js";
 configDotenv();
 let db;
 export default async function connectDB() {

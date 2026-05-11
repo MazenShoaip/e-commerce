@@ -1,6 +1,16 @@
 {
     "compilerOptions": {
         "module": "NodeNext",
-        "moduleResolution": "NodeNext"
+        "moduleResolution": "NodeNext",
+        "paths": {
+            "#repositories/*": ["./src/repositories/*"],
+            "#controllers/*": ["./src/controllers/*"],
+            "#db/*": ["./src/db/*"],
+            "#middlewares/*": ["./src/middlewares/*"],
+            "#routes/*": ["./src/routes/*"],
+            "#schemas/*": ["./src/schemas/*"],
+            "#services/*": ["./src/services/*"],
+            "#utils/*": ["./src/utils/*"]
+        }
     }
 }

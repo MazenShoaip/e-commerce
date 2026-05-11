@@ -1,6 +1,6 @@
-import { deleteItem } from "../../Repositories/databaseRepository.js";
-import AppError from "../../utils/appError.js";
-import idSchema from "../../schemas/idSchema.js";
+import { deleteItem } from "#repositories/databaseRepository.js";
+import AppError from "#utils/appError.js";
+import idSchema from "#schemas/idSchema.js";
 
 export default async function removeProductService(body) {
     let verify = idSchema.safeParse(body);

@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { getDB } from "../db/db.js";
+import { getDB } from "#db/db.js";
 
 const dbCollection = (col) => getDB().collection(col);
 

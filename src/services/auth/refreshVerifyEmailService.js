@@ -1,10 +1,10 @@
 import { ObjectId } from "mongodb";
-import { updateItem, findItem } from "../../Repositories/databaseRepository.js";
-import idSchema from "../../schemas/idSchema.js";
-import AppError from "../../utils/appError.js";
+import { updateItem, findItem } from "#repositories/databaseRepository.js";
+import idSchema from "#schemas/idSchema.js";
+import AppError from "#utils/appError.js";
 import bcrypt from "bcrypt";
-import generateOTP from "../../utils/generateOTP.js";
-import sendEmail from "../emailService.js";
+import generateOTP from "#utils/generateOTP.js";
+import sendEmail from "#services/emailService.js";
 export default async function refreshVerifyEmailService(body) {
     let verify = idSchema.safeParse(body);
     if (!verify.success)

@@ -1,8 +1,8 @@
-import signupService from "../services/auth/signupService.js";
-import loginService from "../services/auth/loginService.js";
-import refreshTokenService from "../services/auth/refreshTokenService.js";
-import refreshVerifyEmailService from "../services/auth/refreshVerifyEmailService.js";
-import verifyEmailService from "../services/auth/verifyEmailService.js";
+import signupService from "#services/auth/signupService.js";
+import loginService from "#services/auth/loginService.js";
+import refreshTokenService from "#services/auth/refreshTokenService.js";
+import refreshVerifyEmailService from "#services/auth/refreshVerifyEmailService.js";
+import verifyEmailService from "#services/auth/verifyEmailService.js";
 
 export async function loginController(req, res, next) {
     let result = await loginService(req.body, res);

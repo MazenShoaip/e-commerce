@@ -25,6 +25,17 @@
         "jsonwebtoken": "^9.0.3",
         "mongodb": "^7.2.0",
         "nodemailer": "^8.0.7",
+        "smtp-server": "^3.18.4",
         "zod": "^4.4.1"
+    },
+    "imports": {
+        "#repositories/*": "./src/repositories/*",
+        "#controllers/*": "./src/controllers/*",
+        "#db/*": "./src/db/*",
+        "#middlewares/*": "./src/middlewares/*",
+        "#routes/*": "./src/routes/*",
+        "#schemas/*": "./src/schemas/*",
+        "#services/*": "./src/services/*",
+        "#utils/*": "./src/utils/*"
     }
 }

@@ -1,8 +1,8 @@
-import addProductService from "../services/product/addProductService.js";
-import updateProductService from "../services/product/updateProductService.js";
-import getProductsService from "../services/product/getProductsService.js";
-import removeProductService from "../services/product/deleteProductService.js";
-import AppError from "../utils/appError.js";
+import addProductService from "#services/product/addProductService.js";
+import updateProductService from "#services/product/updateProductService.js";
+import getProductsService from "#services/product/getProductsService.js";
+import removeProductService from "#services/product/deleteProductService.js";
+import AppError from "#utils/appError.js";
 
 export async function addProductController(req, res, next) {
     if (req.user.role !== "admin") throw new AppError("Access Denied", 401);

@@ -1,6 +1,6 @@
-import { updateItem } from "../../Repositories/databaseRepository.js";
-import AppError from "../../utils/appError.js";
-import productUpdateSchema from "../../schemas/productUpdateSchema.js";
+import { updateItem } from "#repositories/databaseRepository.js";
+import AppError from "#utils/appError.js";
+import productUpdateSchema from "#schemas/productUpdateSchema.js";
 
 export default async function updateProductService(body) {
     let verify = productUpdateSchema.safeParse(body);

@@ -1,6 +1,6 @@
 import { configDotenv } from "dotenv";
 import jwt from "jsonwebtoken";
-import AppError from "../utils/appError.js";
+import AppError from "#utils/appError.js";
 configDotenv();
 export default function verifyToken(req, res, next) {
     let token = String(req.headers.authorization).split(" ")[1];
