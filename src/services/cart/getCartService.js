@@ -1,7 +1,8 @@
 import { findItem } from "#repositories/databaseRepository.js";
 
 export default async function getCartService(user) {
-    let result = await findItem({ user_id: user.sub }, "users");
+    console.log(user)
+    let result = await findItem({ user_id: user.sub }, "carts");
     return {
         cart: result.cart,
     };

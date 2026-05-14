@@ -20,13 +20,13 @@ export default async function loginService(body, res) {
     let passwordMatch = await bcrypt.compare(data.password, user.password);
     if (!passwordMatch) throw new AppError("Invalid email or password", 401);
     let accessToken = await generateToken(
-        { sub: user._id, role: user.role },
+        { sub: user.id, role: user.role },
         "access",
         "1d",
     );
 
     let refreshToken = await generateToken(
-        { sub: user._id, role: user.role },
+        { sub: user.id, role: user.role },
         "refresh",
         "1d",
     );

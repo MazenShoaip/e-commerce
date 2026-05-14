@@ -96,11 +96,30 @@ export async function deleteItem(filters, relation, common = true) {
     const whereClause = filterKeys
         .map((k, i) => format("%I = %L", k, filterValues[i]))
         .join(` ${common ? "AND" : "OR"} `);
-    let query = format(
-        "DELETE FROM %I WHERE %s",
-        relation,
-        whereClause,
-    );
+    let query = format("DELETE FROM %I WHERE %s", relation, whereClause);
     let result = await pool.query(query);
     return result;
+}
+
+export async function setCart(data) {
+    let items = data.items;
+    let user_id = data.user_id;
+    for (let i of items) {
+        if (!i.quantity) {
+            await deleteItem({ product_id: i.product_id, user_id }, "carts");
+            continue;
+        }
+        let item = (
+            await findItem({ product_id: i.product_id, user_id }, "carts")
+        ).rows[0];
+        if (!item) {
+            await addItem({ user_id, ...i }, "carts");
+            continue;
+        }
+        await updateItem(
+            { quantity: i.quantity },
+            { id: item.id, user_id },
+            "carts",
+        );
+    }
 }

@@ -1,12 +1,16 @@
-import { updateItem, findItem } from "#repositories/databaseRepository.js";
+import {
+    updateItem,
+    findItem,
+    setCart,
+} from "#repositories/databaseRepository.js";
 import AppError from "#utils/appError.js";
 import cartSchema from "#schemas/cartSchema.js";
 
 export default async function setCartService(items, user) {
-    // let verify = cartSchema.safeParse(items);
-    // if (!verify.success)
-    //     throw new AppError("Invalid " + verify.error.issues[0].path[0], 400);
-    // let data = verify.data.cart;
+    let verify = cartSchema.safeParse(items);
+    if (!verify.success)
+        throw new AppError("Invalid " + verify.error.issues[0].path[0], 400);
+    let data = { items: verify.data.cart, user_id: user.sub };
     // let badCart = [];
     // for (let i = 0; i < data.length; i++) {
     //     let item = await findItem({ _id: data[i] }, "products");
@@ -14,10 +18,9 @@ export default async function setCartService(items, user) {
     // }
     // if (badCart.length > 0)
     //     throw new AppError(`${badCart} Does not Exist`, 400);
-    
-    // let result = await updateItem({ _id: user.sub, cart: data }, "users");
-    // return {
-    //     id: result.insertedId,
-    //     message: "Product is added",
-    // };
+    let result = await setCart(data);
+    return {
+        id: result,
+        message: "Product is added",
+    };
 }

@@ -7,20 +7,15 @@ configDotenv();
 
 export default async function generateToken(user, type, expire) {
     let jti = crypto.randomUUID();
-    user.jti = jti;
     let token = jwt.sign(
-        { sub: user.sub, jti, type, createdAt: new Date(), ...user },
+        { ...user, jti, type, createdAt: new Date() },
         process.env[type.toUpperCase() + "_JWT_KEY"],
         {
             expiresIn: expire,
         },
     );
 
-    if (type == "refresh")
-        await addItem(
-            { jti: jti},
-            "tokens",
-        );
+    if (type == "refresh") await addItem({ jti: jti }, "tokens");
     return token;
 }
 
