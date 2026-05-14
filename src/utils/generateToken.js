@@ -15,7 +15,12 @@ export default async function generateToken(user, type, expire) {
             expiresIn: expire,
         },
     );
-    if (type == "refresh") await addItem({ jti }, "refreshTokens");
+
+    if (type == "refresh")
+        await addItem(
+            { jti: jti},
+            "tokens",
+        );
     return token;
 }
 

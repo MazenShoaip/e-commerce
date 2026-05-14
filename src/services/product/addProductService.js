@@ -7,9 +7,9 @@ export default async function addProductService(body) {
     if (!verify.success)
         throw new AppError("Invalid " + verify.error.issues[0].path[0], 400);
     let data = verify.data;
-    let result = await addItem(data, "products");
+    let result = (await addItem(data, 'products')).rows[0].id;
     return {
-        id: result.insertedId,
+        id: result,
         message: "Product is added",
     };
 }

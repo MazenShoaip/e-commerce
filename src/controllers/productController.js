@@ -20,7 +20,7 @@ export async function updateProductController(req, res, next) {
     let result = await updateProductService(req.body);
     if (result.matchedCount === 0)
         throw new AppError("Item was not found", 400);
-    res.status(200).json({ success: true, deletedCount: result });
+    res.status(200).json({ success: true, result });
 }
 export async function getProductsController(req, res, next) {
     let result = await getProductsService();

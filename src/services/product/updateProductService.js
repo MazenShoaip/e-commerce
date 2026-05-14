@@ -7,11 +7,10 @@ export default async function updateProductService(body) {
     if (!verify.success)
         throw new AppError("Invalid " + verify.error.issues[0].path[0], 400);
     let data = verify.data;
-    data._id = data.id;
+    let id = data.id;
     delete data.id;
-    let result = await updateItem(data, "products");
+    let result = await updateItem(data, { id }, "products");
     return {
-        matchedCount: result.matchedCount,
-        modifiedCount: result.modifiedCount,
+        matchedCount: result.rowCount,
     };
 }
